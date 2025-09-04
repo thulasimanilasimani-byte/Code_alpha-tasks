@@ -1,0 +1,28 @@
+def get_response(user_input):
+    """
+    Return a predefined response based on the user's input.
+    """
+    msg = user_input.lower().strip()
+    if msg == "hello":
+        return "Hi!"
+    elif msg in ("how are you", "how are you?"):
+        return "I'm fine, thanks!"
+    elif msg == "bye":
+        return "Goodbye!"
+    else:
+        return "Sorry, I didn't understand that."
+
+def run_chatbot():
+    """
+    Run the chatbot in a loop until the user says 'bye'.
+    """
+    print("🤖 Chatbot: Hello! (type 'bye' to exit)\n")
+    while True:
+        user_msg = input("You: ")
+        response = get_response(user_msg)
+        print(f"🤖 Chatbot: {response}\n")
+        if user_msg.lower().strip() == "bye":
+            break
+
+if __name__ == "__main__":
+    run_chatbot()
