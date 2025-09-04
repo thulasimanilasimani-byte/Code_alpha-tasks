@@ -1,0 +1,47 @@
+# Hardcoded stock prices dictionary
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 2750,
+    "MSFT": 310,
+    "AMZN": 3500
+}
+
+# Dictionary to store user input
+portfolio = {}
+
+# User input
+print("Enter your stock portfolio details:")
+while True:
+    stock = input("Enter stock symbol (or type 'done' to finish): ").upper()
+    if stock == 'DONE':
+        break
+    if stock in stock_prices:
+        quantity = int(input(f"Enter quantity of {stock}: "))
+        portfolio[stock] = quantity
+    else:
+        print("Stock not found in price list. Try again.")
+
+# Calculate total investment
+total_investment = 0
+print("\nYour Investment Summary:")
+for stock, quantity in portfolio.items():
+    price = stock_prices[stock]
+    value = price * quantity
+    total_investment += value
+    print(f"{stock}: {quantity} shares x ₹{price} = ₹{value}")
+
+print(f"\nTotal Investment Value: ₹{total_investment}")
+
+# Optional: Save to file
+save = input("\nDo you want to save this summary to a file? (yes/no): ").lower()
+if save == 'yes':
+    filename = "portfolio_summary.txt"
+    with open(filename, "w") as file:
+        file.write("Stock Portfolio Summary\n")
+        for stock, quantity in portfolio.items():
+            price = stock_prices[stock]
+            value = price * quantity
+            file.write(f"{stock}: {quantity} shares x ₹{price} = ₹{value}\n")
+        file.write(f"\nTotal Investment Value: ₹{total_investment}")
+    print(f"Summary saved to '{filename}'")
